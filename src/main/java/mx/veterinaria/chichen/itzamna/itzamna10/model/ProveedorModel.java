@@ -29,4 +29,8 @@ public class ProveedorModel {
 
     @OneToMany
     private List<ComprasModel> compras;
+
+    @OneToMany
+    private List<ProductosModel> productos;
+
 }

@@ -31,4 +31,7 @@ public class ProductosModel {
 
     @Column(name = "precio_producto")
     private Double precioProducto;
+
+    @ManyToOne
+    private ProveedorModel proveedor;
 }
