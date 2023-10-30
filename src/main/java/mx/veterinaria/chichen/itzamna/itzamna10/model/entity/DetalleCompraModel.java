@@ -1,8 +1,9 @@
-package mx.veterinaria.chichen.itzamna.itzamna10.model;
+package mx.veterinaria.chichen.itzamna.itzamna10.model.entity;
 
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Data
 @Entity
@@ -13,6 +14,9 @@ public class DetalleCompraModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_detalle")
     private Long idDetalle;
+
+    @Column(name = "fecha_detalle")
+    private LocalDate fechaDetalle;
 
     @ManyToOne
     private ProductosModel productoDetalle;

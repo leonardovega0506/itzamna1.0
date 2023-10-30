@@ -1,21 +1,27 @@
 package mx.veterinaria.chichen.itzamna.itzamna10.service.interfaces;
 
-import mx.veterinaria.chichen.itzamna.itzamna10.model.PacientesModel;
+import mx.veterinaria.chichen.itzamna.itzamna10.model.dto.PacientesDTO;
+import mx.veterinaria.chichen.itzamna.itzamna10.model.entity.PacientesModel;
+import mx.veterinaria.chichen.itzamna.itzamna10.response.PacienteResponse;
+import mx.veterinaria.chichen.itzamna.itzamna10.response.ProductoResponse;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface IPacienteService {
 
-    List<PacientesModel> findAllPaciente();
 
-    List<PacientesModel> findAllPacienteByPropietarioId(Long idPropietario);
+    PacienteResponse getAllPacientes(int numPage, int sizePage, String orderBy, String sortDir);
 
-    Optional<PacientesModel> findPacienteById(Long idPaciente);
+    ProductoResponse getAllPacienteByPropietario(int numPage, int size, String orderBy, String sortDir);
 
-    PacientesModel savePaciente(PacientesModel paciente);
+    ProductoResponse getPacienteByNombre(int numPage, int numSize, String orderBy, String sortDir, String nombre);
 
-    void updatePaciente(PacientesModel paciente);
+    PacientesDTO getPacienteById(Long idPaciente);
+
+    PacientesDTO savePaciente(PacientesDTO pacientesDTO);
+
+    void updatePaciente(PacientesDTO paciente);
 
     void deletePacienteById(Long idPaciente);
 }

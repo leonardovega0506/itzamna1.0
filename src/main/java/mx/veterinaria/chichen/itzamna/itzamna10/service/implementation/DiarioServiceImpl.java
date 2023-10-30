@@ -1,7 +1,9 @@
 package mx.veterinaria.chichen.itzamna.itzamna10.service.implementation;
 
-import mx.veterinaria.chichen.itzamna.itzamna10.model.DiarioModel;
+import mx.veterinaria.chichen.itzamna.itzamna10.model.dto.DiarioDTO;
+import mx.veterinaria.chichen.itzamna.itzamna10.model.entity.DiarioModel;
 import mx.veterinaria.chichen.itzamna.itzamna10.repository.IDiarioRepository;
+import mx.veterinaria.chichen.itzamna.itzamna10.response.DiarioResponse;
 import mx.veterinaria.chichen.itzamna.itzamna10.service.interfaces.IDiarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,36 +15,34 @@ import java.util.Optional;
 @Service
 public class DiarioServiceImpl implements IDiarioService {
 
-    @Autowired
-    private IDiarioRepository iDiario;
 
     @Override
-    public List<DiarioModel> findAllDiairios() {
-        return iDiario.findAll();
+    public DiarioResponse getAllDiario(int numPage, int sizePage, String orderBy, String sortDir) {
+        return null;
     }
 
     @Override
-    public List<DiarioModel> findAllDiariosByFecha(LocalDate fecha) {
-        return iDiario.findByFechaDiario(fecha);
+    public DiarioDTO getDiarioById(Long idDiario) {
+        return null;
     }
 
     @Override
-    public Optional<DiarioModel> findDiairioById(Long idDiairio) {
-        return iDiario.findById(idDiairio);
+    public DiarioDTO saveDiairio(DiarioDTO diarioDTO) {
+        return null;
     }
 
     @Override
-    public DiarioModel saveDiairio(DiarioModel diario) {
-        return iDiario.save(diario);
-    }
+    public void updateDiairio(DiarioDTO diairio) {
 
-    @Override
-    public void updateDiairio(DiarioModel diairio) {
-        iDiario.save(diairio);
     }
 
     @Override
     public void deleteDiarioById(Long idDiairio) {
-        iDiario.deleteById(idDiairio);
+
+    }
+
+    @Override
+    public void assignDiairioToHistorico(DiarioDTO diarioDTO) {
+
     }
 }

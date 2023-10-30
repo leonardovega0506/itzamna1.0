@@ -1,8 +1,9 @@
-package mx.veterinaria.chichen.itzamna.itzamna10.model;
+package mx.veterinaria.chichen.itzamna.itzamna10.model.entity;
 
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -32,6 +33,9 @@ public class PacientesModel {
 
     @Column(name = "edad_paciente")
     private Double edadPaciente;
+
+    @Column(name = "fecha_alta")
+    private LocalDate fechaAltaPaciente;
 
     @ManyToOne
     private PropietarioModel propietario;

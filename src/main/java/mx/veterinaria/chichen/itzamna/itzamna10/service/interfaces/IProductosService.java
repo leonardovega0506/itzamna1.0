@@ -1,23 +1,29 @@
 package mx.veterinaria.chichen.itzamna.itzamna10.service.interfaces;
 
-import mx.veterinaria.chichen.itzamna.itzamna10.model.ProductosModel;
+import mx.veterinaria.chichen.itzamna.itzamna10.model.dto.ProductosDTO;
+import mx.veterinaria.chichen.itzamna.itzamna10.model.entity.ProductosModel;
+import mx.veterinaria.chichen.itzamna.itzamna10.response.ProductoResponse;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface IProductosService {
 
-    List<ProductosModel> findAllProductos();
 
-    List<ProductosModel> findAllProductosByProveedorId(Long idProveedor);
+    ProductoResponse getAllProductos(int numPage, int sizePage, String orderBy, String sortDir);
 
-    Optional<ProductosModel> findProductoById(Long idProducto);
+    ProductoResponse getAllProductoByProveedor(int numPage, int sizePage, String orderBy, String sortDir, String nombreProveedor);
 
-    Optional<ProductosModel> findProductoByClaveProducto(String claveProducto);
+    ProductoResponse getProductoByNombre(int numPage, int sizePage, String orderBy, String sortDir, String nombreProducto);
 
-    ProductosModel saveProducto(ProductosModel producto);
+    ProductosDTO getProductoById(Long idProducto);
 
-    void updateProductos(ProductosModel producto);
+    ProductosDTO getProductoByClaveProducto(String claveProducto);
+
+
+    ProductosDTO saveProducto(ProductosDTO producto);
+
+    void updateProductos(ProductosDTO producto);
 
     void deleteProdycById(Long idProducto);
 }

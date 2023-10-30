@@ -1,7 +1,10 @@
 package mx.veterinaria.chichen.itzamna.itzamna10.service.implementation;
 
-import mx.veterinaria.chichen.itzamna.itzamna10.model.ServiciosPacientesModel;
+import mx.veterinaria.chichen.itzamna.itzamna10.model.dto.ServiciosDTO;
+import mx.veterinaria.chichen.itzamna.itzamna10.model.dto.ServiciosPacientesDTO;
+import mx.veterinaria.chichen.itzamna.itzamna10.model.entity.ServiciosPacientesModel;
 import mx.veterinaria.chichen.itzamna.itzamna10.repository.IServiciosPacientesRepository;
+import mx.veterinaria.chichen.itzamna.itzamna10.response.ServiciosPacientesResponse;
 import mx.veterinaria.chichen.itzamna.itzamna10.service.interfaces.IServiciosPacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,36 +15,34 @@ import java.util.Optional;
 @Service
 public class ServiciosPacienteServiceImpl implements IServiciosPacienteService {
 
-    @Autowired
-    private IServiciosPacientesRepository isPacientes;
 
     @Override
-    public List<ServiciosPacientesModel> findAllServicios() {
-        return isPacientes.findAll();
+    public ServiciosPacientesResponse getAllServiciosP(int numPage, int sizePage, String orderBy, String sortDir) {
+        return null;
     }
 
     @Override
-    public List<ServiciosPacientesModel> findAllServiciosByPacienteId(Long idPaciente) {
-        return isPacientes.findByPaciente_IdPaciente(idPaciente);
+    public ServiciosPacientesResponse getAllServiciosByPaciente(int numPage, int sizePage, String orderBy, String sortDir, Long idPaciente) {
+        return null;
     }
 
     @Override
-    public Optional<ServiciosPacientesModel> findById(Long idServicioP) {
-        return isPacientes.findById(idServicioP);
+    public ServiciosPacientesDTO getPacienteById(Long idPaciente) {
+        return null;
     }
 
     @Override
-    public ServiciosPacientesModel saveServicioPacinte(ServiciosPacientesModel servicio) {
-        return isPacientes.save(servicio);
+    public ServiciosPacientesDTO saveServicioPacinte(ServiciosDTO servicio) {
+        return null;
     }
 
     @Override
-    public void updateServiciosPacientes(ServiciosPacientesModel servicio) {
-        isPacientes.save(servicio);
+    public void updateServiciosPacientes(ServiciosDTO servicio) {
+
     }
 
     @Override
     public void deleteServiciosPaciente(Long idServiciosPaciente) {
-        isPacientes.deleteById(idServiciosPaciente);
+
     }
 }

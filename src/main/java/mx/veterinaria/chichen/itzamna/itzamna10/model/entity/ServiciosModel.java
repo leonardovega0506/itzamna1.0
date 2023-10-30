@@ -1,4 +1,4 @@
-package mx.veterinaria.chichen.itzamna.itzamna10.model;
+package mx.veterinaria.chichen.itzamna.itzamna10.model.entity;
 
 import lombok.Data;
 

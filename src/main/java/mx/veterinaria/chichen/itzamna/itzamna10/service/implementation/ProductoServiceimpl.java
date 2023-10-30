@@ -1,7 +1,9 @@
 package mx.veterinaria.chichen.itzamna.itzamna10.service.implementation;
 
-import mx.veterinaria.chichen.itzamna.itzamna10.model.ProductosModel;
+import mx.veterinaria.chichen.itzamna.itzamna10.model.dto.ProductosDTO;
+import mx.veterinaria.chichen.itzamna.itzamna10.model.entity.ProductosModel;
 import mx.veterinaria.chichen.itzamna.itzamna10.repository.IProductoRepository;
+import mx.veterinaria.chichen.itzamna.itzamna10.response.ProductoResponse;
 import mx.veterinaria.chichen.itzamna.itzamna10.service.interfaces.IProductosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,42 +14,44 @@ import java.util.Optional;
 @Service
 public class ProductoServiceimpl implements IProductosService {
 
-    @Autowired
-    private IProductoRepository iProducto;
-
 
     @Override
-    public List<ProductosModel> findAllProductos() {
-        return iProducto.findAll();
+    public ProductoResponse getAllProductos(int numPage, int sizePage, String orderBy, String sortDir) {
+        return null;
     }
 
     @Override
-    public List<ProductosModel> findAllProductosByProveedorId(Long idProveedor) {
-        return iProducto.findByProveedor_IdProveedor(idProveedor);
+    public ProductoResponse getAllProductoByProveedor(int numPage, int sizePage, String orderBy, String sortDir, String nombreProveedor) {
+        return null;
     }
 
     @Override
-    public Optional<ProductosModel> findProductoById(Long idProducto) {
-        return iProducto.findById(idProducto);
+    public ProductoResponse getProductoByNombre(int numPage, int sizePage, String orderBy, String sortDir, String nombreProducto) {
+        return null;
     }
 
     @Override
-    public Optional<ProductosModel> findProductoByClaveProducto(String claveProducto) {
-        return iProducto.findByClaveProducto(claveProducto);
+    public ProductosDTO getProductoById(Long idProducto) {
+        return null;
     }
 
     @Override
-    public ProductosModel saveProducto(ProductosModel producto) {
-        return iProducto.save(producto);
+    public ProductosDTO getProductoByClaveProducto(String claveProducto) {
+        return null;
     }
 
     @Override
-    public void updateProductos(ProductosModel producto) {
-        iProducto.save(producto);
+    public ProductosDTO saveProducto(ProductosDTO producto) {
+        return null;
+    }
+
+    @Override
+    public void updateProductos(ProductosDTO producto) {
+
     }
 
     @Override
     public void deleteProdycById(Long idProducto) {
-        iProducto.deleteById(idProducto);
+
     }
 }

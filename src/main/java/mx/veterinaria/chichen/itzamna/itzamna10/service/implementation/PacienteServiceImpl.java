@@ -1,7 +1,10 @@
 package mx.veterinaria.chichen.itzamna.itzamna10.service.implementation;
 
-import mx.veterinaria.chichen.itzamna.itzamna10.model.PacientesModel;
+import mx.veterinaria.chichen.itzamna.itzamna10.model.dto.PacientesDTO;
+import mx.veterinaria.chichen.itzamna.itzamna10.model.entity.PacientesModel;
 import mx.veterinaria.chichen.itzamna.itzamna10.repository.IPacienteRepository;
+import mx.veterinaria.chichen.itzamna.itzamna10.response.PacienteResponse;
+import mx.veterinaria.chichen.itzamna.itzamna10.response.ProductoResponse;
 import mx.veterinaria.chichen.itzamna.itzamna10.service.interfaces.IPacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,36 +15,39 @@ import java.util.Optional;
 @Service
 public class PacienteServiceImpl implements IPacienteService {
 
-    @Autowired
-    private IPacienteRepository iPaciente;
 
     @Override
-    public List<PacientesModel> findAllPaciente() {
-        return iPaciente.findAll();
+    public PacienteResponse getAllPacientes(int numPage, int sizePage, String orderBy, String sortDir) {
+        return null;
     }
 
     @Override
-    public List<PacientesModel> findAllPacienteByPropietarioId(Long idPropietario) {
-        return iPaciente.findByPropietario_IdPropietario(idPropietario);
+    public ProductoResponse getAllPacienteByPropietario(int numPage, int size, String orderBy, String sortDir) {
+        return null;
     }
 
     @Override
-    public Optional<PacientesModel> findPacienteById(Long idPaciente) {
-        return iPaciente.findById(idPaciente);
+    public ProductoResponse getPacienteByNombre(int numPage, int numSize, String orderBy, String sortDir, String nombre) {
+        return null;
     }
 
     @Override
-    public PacientesModel savePaciente(PacientesModel paciente) {
-        return iPaciente.save(paciente);
+    public PacientesDTO getPacienteById(Long idPaciente) {
+        return null;
     }
 
     @Override
-    public void updatePaciente(PacientesModel paciente) {
-        iPaciente.save(paciente);
+    public PacientesDTO savePaciente(PacientesDTO pacientesDTO) {
+        return null;
+    }
+
+    @Override
+    public void updatePaciente(PacientesDTO paciente) {
+
     }
 
     @Override
     public void deletePacienteById(Long idPaciente) {
-        iPaciente.deleteById(idPaciente);
+
     }
 }

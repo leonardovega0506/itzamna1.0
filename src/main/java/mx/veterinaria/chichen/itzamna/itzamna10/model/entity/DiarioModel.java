@@ -1,4 +1,4 @@
-package mx.veterinaria.chichen.itzamna.itzamna10.model;
+package mx.veterinaria.chichen.itzamna.itzamna10.model.entity;
 
 import lombok.Data;
 
@@ -26,6 +26,9 @@ public class DiarioModel {
 
     @Column(name = "venta_diaria")
     private Double ventaDiaria;
+
+    @Column(name = "acumulado_diario")
+    private Double AcumuladoDiario;
 
     @ManyToOne
     private ComprasModel compraDiario;

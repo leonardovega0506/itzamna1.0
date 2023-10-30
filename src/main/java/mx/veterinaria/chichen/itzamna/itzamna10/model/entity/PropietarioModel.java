@@ -1,4 +1,4 @@
-package mx.veterinaria.chichen.itzamna.itzamna10.model;
+package mx.veterinaria.chichen.itzamna.itzamna10.model.entity;
 
 import lombok.Data;
 
@@ -32,6 +32,9 @@ public class PropietarioModel {
 
     @Column(name = "email_propietario")
     private String emailPropietario;
+
+    @Column(name = "fecha_alta")
+    private String fechaAltaPropietario;
 
     @OneToMany
     private List<PacientesModel> pacientes;

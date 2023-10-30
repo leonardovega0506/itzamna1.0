@@ -1,7 +1,9 @@
 package mx.veterinaria.chichen.itzamna.itzamna10.service.implementation;
 
-import mx.veterinaria.chichen.itzamna.itzamna10.model.PropietarioModel;
+import mx.veterinaria.chichen.itzamna.itzamna10.model.dto.PropietarioDTO;
+import mx.veterinaria.chichen.itzamna.itzamna10.model.entity.PropietarioModel;
 import mx.veterinaria.chichen.itzamna.itzamna10.repository.IPropietarioRepository;
+import mx.veterinaria.chichen.itzamna.itzamna10.response.ProductoResponse;
 import mx.veterinaria.chichen.itzamna.itzamna10.service.interfaces.IPropietarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,31 +14,34 @@ import java.util.Optional;
 @Service
 public class PropietarioServiceImpl implements IPropietarioService {
 
-    @Autowired
-    private IPropietarioRepository iPropietario;
 
     @Override
-    public List<PropietarioModel> findAllPropietarios() {
-        return iPropietario.findAll();
+    public ProductoResponse getAllPropietarios(int numPage, int sizePage, String orderBy, String sortDir) {
+        return null;
     }
 
     @Override
-    public Optional<PropietarioModel> findPropietarioById(Long idPropietarioP) {
-        return iPropietario.findById(idPropietarioP);
+    public ProductoResponse getllPropietariosByNombre(int numPage, int sizePage, String orderBy, String sortDir, String nombreProveedor) {
+        return null;
     }
 
     @Override
-    public PropietarioModel savePropietario(PropietarioModel propietario) {
-        return iPropietario.save(propietario);
+    public PropietarioDTO getPropietarioById(Long idPropietario) {
+        return null;
     }
 
     @Override
-    public void updatePropietario(PropietarioModel propietari) {
-        iPropietario.save(propietari);
+    public PropietarioDTO savePropietario(PropietarioDTO propietario) {
+        return null;
+    }
+
+    @Override
+    public void updatePropietario(PropietarioDTO propietarip) {
+
     }
 
     @Override
     public void deleteByIdPropietario(Long idPropietario) {
-        iPropietario.deleteById(idPropietario);
+
     }
 }

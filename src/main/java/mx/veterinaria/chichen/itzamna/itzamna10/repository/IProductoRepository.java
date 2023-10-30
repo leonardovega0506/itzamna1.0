@@ -1,6 +1,6 @@
 package mx.veterinaria.chichen.itzamna.itzamna10.repository;
 
-import mx.veterinaria.chichen.itzamna.itzamna10.model.ProductosModel;
+import mx.veterinaria.chichen.itzamna.itzamna10.model.entity.ProductosModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
