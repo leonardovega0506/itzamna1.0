@@ -18,18 +18,12 @@ public class DiarioModel {
     @Column(name = "fecha_diario",nullable = false)
     LocalDate fechaDiario;
 
-    @ManyToOne
-    private ProductosModel productoDiario;
+    @Column(name = "valor_diario")
+    private Double valorDiario;
 
     @ManyToOne
-    private ServiciosPacientesModel servicioDiario;
-
-    @Column(name = "venta_diaria")
-    private Double ventaDiaria;
-
-    @Column(name = "acumulado_diario")
-    private Double AcumuladoDiario;
+    private ComprasModel compras;
 
     @ManyToOne
-    private ComprasModel compraDiario;
+    private VentasModel ventas;
 }

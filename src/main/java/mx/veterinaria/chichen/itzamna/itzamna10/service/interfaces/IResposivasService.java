@@ -11,7 +11,7 @@ public interface IResposivasService {
 
 
     ResponsivasResponse getAllResponsivas(int numPage, int sizePage, String orderBy, String sortDir);
-    ResponsivasResponse getAllResponsivasByPaciente(int numPage, int sizePage, String orderBy, String sortDir, int idPaciente);
+    ResponsivasResponse getAllResponsivasByPaciente(int numPage, int sizePage, String orderBy, String sortDir, Long idPaciente);
     ResponsivasDTO getResponsivaById(Long idResponsiva);
     ResponsivasDTO saveResponsiva(ResponsivasDTO responsiva);
     void deleteResposivaById(Long idResponsiva);

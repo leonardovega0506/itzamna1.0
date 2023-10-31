@@ -13,9 +13,9 @@ public interface IPacienteService {
 
     PacienteResponse getAllPacientes(int numPage, int sizePage, String orderBy, String sortDir);
 
-    ProductoResponse getAllPacienteByPropietario(int numPage, int size, String orderBy, String sortDir);
+    PacienteResponse getAllPacienteByPropietario(int numPage, int size, String orderBy, String sortDir,String nombreProp);
 
-    ProductoResponse getPacienteByNombre(int numPage, int numSize, String orderBy, String sortDir, String nombre);
+    PacienteResponse getPacienteByNombre(int numPage, int numSize, String orderBy, String sortDir, String nombre);
 
     PacientesDTO getPacienteById(Long idPaciente);
 

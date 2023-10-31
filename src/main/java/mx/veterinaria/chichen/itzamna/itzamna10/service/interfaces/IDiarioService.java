@@ -12,12 +12,12 @@ public interface IDiarioService {
 
     DiarioResponse getAllDiario(int numPage, int sizePage, String orderBy, String sortDir);
     DiarioDTO getDiarioById(Long idDiario);
-    DiarioDTO saveDiairio(DiarioDTO diarioDTO);
+    DiarioDTO saveDiario(DiarioDTO diarioDTO);
 
-    void updateDiairio(DiarioDTO diairio);
+    void updateDiario(DiarioDTO diairio);
 
     void deleteDiarioById(Long idDiairio);
 
-    void assignDiairioToHistorico(DiarioDTO diarioDTO);
+    void assignDiairioToHistorico(LocalDate fechaDiario);
 
 }

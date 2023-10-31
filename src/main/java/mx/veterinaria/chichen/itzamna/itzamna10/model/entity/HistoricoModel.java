@@ -17,15 +17,16 @@ public class HistoricoModel {
     @Column(name = "fecha_historico",nullable = false)
     LocalDate fechaHistorico;
 
-    @ManyToOne
-    private ProductosModel productoHistorico;
 
-    @ManyToOne
-    private ServiciosPacientesModel servicioHistorico;
-
-    @Column(name = "venta_historica")
-    private Double ventaHistorico;
+    @Column(name = "valor_historico")
+    private Double valorHistroico;
 
     @ManyToOne
     private ComprasModel compraHistorico;
+
+    @ManyToOne
+    private VentasModel ventaHistorica;
+
+    @ManyToOne
+    private SumaHistoricoModel sumaHistorico;
 }

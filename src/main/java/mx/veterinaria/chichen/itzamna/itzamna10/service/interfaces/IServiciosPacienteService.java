@@ -15,9 +15,9 @@ public interface IServiciosPacienteService {
     ServiciosPacientesResponse getAllServiciosByPaciente(int numPage, int sizePage, String orderBy, String sortDir,Long idPaciente);
     ServiciosPacientesDTO getPacienteById(Long idPaciente);
 
-    ServiciosPacientesDTO saveServicioPacinte(ServiciosDTO servicio);
+    ServiciosPacientesDTO saveServicioPacinte(ServiciosPacientesDTO servicio);
 
-    void updateServiciosPacientes(ServiciosDTO servicio);
+    void updateServiciosPacientes(ServiciosPacientesDTO servicio);
 
     void deleteServiciosPaciente(Long idServiciosPaciente);
 }

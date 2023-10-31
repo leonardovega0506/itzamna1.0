@@ -1,9 +1,7 @@
 package mx.veterinaria.chichen.itzamna.itzamna10.model.dto;
 
 import lombok.Data;
-import mx.veterinaria.chichen.itzamna.itzamna10.model.entity.ComprasModel;
-import mx.veterinaria.chichen.itzamna.itzamna10.model.entity.ProductosModel;
-import mx.veterinaria.chichen.itzamna.itzamna10.model.entity.ServiciosPacientesModel;
+import mx.veterinaria.chichen.itzamna.itzamna10.model.entity.*;
 
 import javax.persistence.Column;
 import javax.persistence.ManyToOne;
@@ -14,8 +12,8 @@ public class HistoricoDTO {
 
     private Long idHistorico;
     LocalDate fechaHistorico;
-    private ProductosModel productoHistorico;
-    private ServiciosPacientesModel servicioHistorico;
-    private Double ventaHistorico;
-    private ComprasModel compraHistorico;
+    private Double valorHistroico;
+    private ComprasDTO compraHistorico;
+    private VentasDTO ventaHistorica;
+    private SumaHistoricoModel sumaHistorico;
 }

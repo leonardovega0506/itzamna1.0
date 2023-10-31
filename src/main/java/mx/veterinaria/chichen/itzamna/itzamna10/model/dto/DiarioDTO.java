@@ -1,6 +1,7 @@
 package mx.veterinaria.chichen.itzamna.itzamna10.model.dto;
 
 import lombok.Data;
+import mx.veterinaria.chichen.itzamna.itzamna10.model.entity.VentasModel;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -11,7 +12,7 @@ public class DiarioDTO {
 
     private Long idDiario;
     LocalDate fechaDiario;
-    private ServiciosPacientesDTO servicioDiario;
-    private Double ventaDiaria;
-    private ComprasDTO compraDiario;
+    private VentasDTO ventas;
+    private Double valorDiario;
+    private ComprasDTO compra;
 }
