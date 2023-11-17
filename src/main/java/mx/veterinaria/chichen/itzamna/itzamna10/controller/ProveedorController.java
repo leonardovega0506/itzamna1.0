@@ -21,8 +21,8 @@ public class ProveedorController {
     public ResponseEntity<ProveedorResponse> obtenerProveedores(
             @RequestParam(value = "numPage",defaultValue = "0") int numPage,
             @RequestParam (value = "numSize",defaultValue = "10") int numSize,
-            @RequestParam (value = "orderBy",defaultValue = "idDiario") String orderBy,
-            @RequestParam (value = "orderBy",defaultValue = "asc") String sortDir
+            @RequestParam (value = "orderBy",defaultValue = "idProveedor") String orderBy,
+            @RequestParam (value = "sortDir",defaultValue = "asc") String sortDir
     )
     {
         return new ResponseEntity<>(sProveedor.getAllProveedor(numPage,numSize,orderBy,sortDir), HttpStatus.OK);
@@ -41,7 +41,7 @@ public class ProveedorController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProveedorDTO> obtenerProveedorById(@PathVariable Long idProveedor){
+    public ResponseEntity<ProveedorDTO> obtenerProveedorById(@PathVariable(value = "id") Long idProveedor){
         return new ResponseEntity<>(sProveedor.getProveedorById(idProveedor),HttpStatus.OK);
     }
 

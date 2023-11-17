@@ -20,8 +20,8 @@ public class PacienteController {
     public ResponseEntity<PacienteResponse> obtenerPacientes(
             @RequestParam(value = "numPage",defaultValue = "0") int numPage,
             @RequestParam (value = "numSize",defaultValue = "10") int numSize,
-            @RequestParam (value = "orderBy",defaultValue = "idDiario") String orderBy,
-            @RequestParam (value = "orderBy",defaultValue = "asc") String sortDir)
+            @RequestParam (value = "orderBy",defaultValue = "idPaciente") String orderBy,
+            @RequestParam (value = "sortDir",defaultValue = "asc") String sortDir)
     {
         return new ResponseEntity<>(sPaciente.getAllPacientes(numPage,numSize,orderBy,sortDir), HttpStatus.OK);
     }
@@ -30,7 +30,7 @@ public class PacienteController {
     public ResponseEntity<PacienteResponse> obtenerPacientesByPropietario(
             @RequestParam(value = "numPage",defaultValue = "0") int numPage,
             @RequestParam (value = "numSize",defaultValue = "10") int numSize,
-            @RequestParam (value = "orderBy",defaultValue = "idDiario") String orderBy,
+            @RequestParam (value = "orderBy",defaultValue = "idPaciente") String orderBy,
             @RequestParam (value = "orderBy",defaultValue = "asc") String sortDir,
             @RequestParam (value = "nombreProp") String nombreProp)
     {
@@ -49,7 +49,7 @@ public class PacienteController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PacientesDTO> obtenerPacienteById(@PathVariable Long idPaciente){
+    public ResponseEntity<PacientesDTO> obtenerPacienteById(@PathVariable(value = "id") Long idPaciente){
         return new ResponseEntity<>(sPaciente.getPacienteById(idPaciente),HttpStatus.OK);
     }
 

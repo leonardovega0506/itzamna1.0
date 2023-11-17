@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("chichen/itzmna/compras")
+@RequestMapping("chichen/itzamna/compras")
 public class ComprasController {
 
     @Autowired
@@ -26,7 +26,7 @@ public class ComprasController {
             @RequestParam (value = "numPage",defaultValue = "0") int numPage,
             @RequestParam (value = "numSize",defaultValue = "10") int numSize,
             @RequestParam (value = "orderBy",defaultValue = "idCompra") String orderBy,
-            @RequestParam (value = "orderBy",defaultValue = "asc") String sortDir){
+            @RequestParam (value = "sortDir",defaultValue = "asc") String sortDir){
         return new ResponseEntity<>(sCompras.getAllCompras(numPage,numSize,orderBy,sortDir), HttpStatus.OK);
     }
 
@@ -43,8 +43,8 @@ public class ComprasController {
     }
 
     //Controlador para ver la compra por id
-    @GetMapping("/{id}")
-    public ResponseEntity<ComprasDTO> obtenerCompraById(@PathVariable Long idCompra){
+    @GetMapping("/{idCompra}")
+    public ResponseEntity<ComprasDTO> obtenerCompraById(@PathVariable(value = "idCompra") Long idCompra){
         return new ResponseEntity<>(sCompras.getCompraById(idCompra),HttpStatus.OK);
     }
 

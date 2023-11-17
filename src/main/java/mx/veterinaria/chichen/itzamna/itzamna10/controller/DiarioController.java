@@ -43,7 +43,7 @@ public class DiarioController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping
+    @PutMapping("/historico")
     public ResponseEntity<HttpStatus> asignarDiarioHistorico(){
         sDiario.assignDiairioToHistorico(LocalDate.now());
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

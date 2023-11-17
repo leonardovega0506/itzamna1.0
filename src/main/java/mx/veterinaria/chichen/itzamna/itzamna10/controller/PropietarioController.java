@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin("*")
-@RequestMapping("chichen/itzmna/propietario")
+@RequestMapping("chichen/itzamna/propietario")
 @RestController
 public class PropietarioController {
 
@@ -22,8 +22,8 @@ public class PropietarioController {
     public ResponseEntity<PropietarioResponse> obtenerPropietarios(
             @RequestParam(value = "numPage",defaultValue = "0") int numPage,
             @RequestParam (value = "numSize",defaultValue = "10") int numSize,
-            @RequestParam (value = "orderBy",defaultValue = "idDiario") String orderBy,
-            @RequestParam (value = "orderBy",defaultValue = "asc") String sortDir
+            @RequestParam (value = "orderBy",defaultValue = "idPropietario") String orderBy,
+            @RequestParam (value = "sortDir",defaultValue = "asc") String sortDir
     )
     {
         return new ResponseEntity<>(sPropietario.getAllPropietarios(numPage,numSize,orderBy,sortDir), HttpStatus.OK);
@@ -42,7 +42,7 @@ public class PropietarioController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PropietarioDTO> obtenerPropietarioById(@PathVariable Long idPropietario){
+    public ResponseEntity<PropietarioDTO> obtenerPropietarioById(@PathVariable(value = "id") Long idPropietario){
         return new ResponseEntity<>(sPropietario.getPropietarioById(idPropietario),HttpStatus.OK);
     }
 

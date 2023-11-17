@@ -27,10 +27,15 @@ public class ServiciosModel {
     @Column(name = "costo_servicio")
     private Double costoServicio;
 
+    @Column(name = "duracion")
+    private String duracion;
+
     @OneToMany
-    private List<ServiciosModel> serviciosPacientes;
+    private List<ServiciosPacientesModel> serviciosPacientes;
 
     @OneToMany
     private List<ResponsivasModel> responsivas;
 
+    @OneToMany
+    private List<CitasModel> citas;
 }

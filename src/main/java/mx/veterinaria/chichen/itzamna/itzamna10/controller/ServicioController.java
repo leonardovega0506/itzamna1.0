@@ -21,13 +21,13 @@ public class ServicioController {
             @RequestParam(value = "numPage",defaultValue = "0") int numPage,
             @RequestParam (value = "numSize",defaultValue = "10") int numSize,
             @RequestParam (value = "orderBy",defaultValue = "idServicio") String orderBy,
-            @RequestParam (value = "orderBy",defaultValue = "asc") String sortDir
+            @RequestParam (value = "sortDir",defaultValue = "asc") String sortDir
     ){
         return new ResponseEntity<>(sServicio.getAllServicios(numPage,numSize,orderBy,sortDir), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ServiciosDTO> obtenerServicioById(@PathVariable Long idServicio){
+    public ResponseEntity<ServiciosDTO> obtenerServicioById(@PathVariable(value = "id") Long idServicio){
         return new ResponseEntity<>(sServicio.getServicioById(idServicio),HttpStatus.OK);
     }
 

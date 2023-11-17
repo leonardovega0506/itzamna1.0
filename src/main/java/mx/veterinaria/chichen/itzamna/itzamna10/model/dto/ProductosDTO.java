@@ -12,6 +12,7 @@ public class ProductosDTO {
     private String tipoProducto;
     private String nombreProducto;
     private Double costoProducto;
+    private Double precioClienteProducto;
     private Integer cantidadProducto;
     private Double precioProducto;
     private ProveedorDTO proveedor;

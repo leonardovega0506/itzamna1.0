@@ -42,4 +42,7 @@ public class PacientesModel {
 
     @OneToMany
     private List<ResponsivasModel> responsivas;
+
+    @OneToMany
+    private List<CitasModel> citas;
 }

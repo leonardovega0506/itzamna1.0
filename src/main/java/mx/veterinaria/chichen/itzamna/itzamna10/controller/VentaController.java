@@ -20,15 +20,15 @@ public class VentaController {
     public ResponseEntity<VentasResponse> obtenerVentas(
             @RequestParam(value = "numPage",defaultValue = "0") int numPage,
             @RequestParam (value = "numSize",defaultValue = "10") int numSize,
-            @RequestParam (value = "orderBy",defaultValue = "idDiario") String orderBy,
-            @RequestParam (value = "orderBy",defaultValue = "asc") String sortDir
+            @RequestParam (value = "orderBy",defaultValue = "idVenta") String orderBy,
+            @RequestParam (value = "sortDir",defaultValue = "asc") String sortDir
     )
     {
         return new ResponseEntity<>(sVenta.getAllVenta(numPage,numSize,orderBy,sortDir), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<VentasDTO> obtenerVentaById(@PathVariable Long idVenta){
+    public ResponseEntity<VentasDTO> obtenerVentaById(@PathVariable(value = "id") Long idVenta){
         return new ResponseEntity<>(sVenta.getVentaById(idVenta),HttpStatus.OK);
     }
 

@@ -18,15 +18,18 @@ public class DetalleCompraModel {
     @Column(name = "fecha_detalle")
     private LocalDate fechaDetalle;
 
-    @ManyToOne
-    private ProductosModel productoDetalle;
-
-    @ManyToOne
-    private ProveedorModel proveedorDetalle;
-
     @Column(name = "cantidad_detalle")
     private Integer cantidadDetalle;
 
     @Column(name = "precio_detalle")
     private Double precioTotalDetalle;
+
+    @ManyToOne
+    private ComprasModel compras;
+
+    @ManyToOne
+    private ProductosModel productoDetalle;
+
+    @ManyToOne
+    private ProveedorModel proveedorDetalle;
 }

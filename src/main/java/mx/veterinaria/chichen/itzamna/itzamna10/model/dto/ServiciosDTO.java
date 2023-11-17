@@ -13,6 +13,7 @@ public class ServiciosDTO {
     private String tipoServicio;
     private String nombreServicio;
     private Double costoServicio;
+    private String duracion;
     private List<ServiciosDTO> serviciosPacientes;
     private List<ResponsivasDTO> responsivas;
 

@@ -22,6 +22,7 @@ public class SumaHistoricoModel {
     @Column(name = "total")
     private Double sumaTotal;
 
+    @OneToMany
     List<HistoricoModel> listaHistorico;
 
 }

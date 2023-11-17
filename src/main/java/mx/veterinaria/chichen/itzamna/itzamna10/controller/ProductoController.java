@@ -21,8 +21,8 @@ public class ProductoController {
     public ResponseEntity<ProductoResponse> obtenerProductos(
             @RequestParam(value = "numPage",defaultValue = "0") int numPage,
             @RequestParam (value = "numSize",defaultValue = "10") int numSize,
-            @RequestParam (value = "orderBy",defaultValue = "idDiario") String orderBy,
-            @RequestParam (value = "orderBy",defaultValue = "asc") String sortDir
+            @RequestParam (value = "orderBy",defaultValue = "idProducto") String orderBy,
+            @RequestParam (value = "sortDir",defaultValue = "asc") String sortDir
     )
     {
         return new ResponseEntity<>(sProducto.getAllProductos(numPage,numSize,orderBy,sortDir), HttpStatus.OK);
@@ -53,7 +53,7 @@ public class ProductoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductosDTO> obtenerProductoById(@PathVariable Long idProducto){
+    public ResponseEntity<ProductosDTO> obtenerProductoById(@PathVariable (value = "id") Long idProducto){
         return new ResponseEntity<>(sProducto.getProductoById(idProducto),HttpStatus.OK);
     }
 

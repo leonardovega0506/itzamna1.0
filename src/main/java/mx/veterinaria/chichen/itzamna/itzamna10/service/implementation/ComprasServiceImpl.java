@@ -104,7 +104,10 @@ public class ComprasServiceImpl implements IComprasService {
     //Obtener los detalles de la compra
     @Override
     public List<DetalleCompraDTO> getDetallesByCompra(Long idCompra) {
-        List<DetalleCompraModel> listaDetalles = iDetalle.findByProveedorDetalle_Compras_IdCompra(idCompra);
+        List<DetalleCompraModel> listaDetalles = iDetalle.findByCompras_IdCompra(idCompra);
+        ComprasModel compraBuscada = iCompras.findById(idCompra).orElseThrow( ()-> new ResourceNotFoundException("Compras","id",idCompra));
+        compraBuscada.setProductosCompra(listaDetalles);
+        iCompras.save(compraBuscada);
         log.info("OBTENE,OS LA LISTA DE LOS DETALLES");
         List<DetalleCompraDTO> contenido = listaDetalles.stream().map(detalle -> mapearDTOEntidad(detalle)).collect(Collectors.toList());
         return contenido;
