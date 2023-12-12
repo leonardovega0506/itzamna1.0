@@ -47,7 +47,7 @@ public class ServicioController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{idServicio}")
     public ResponseEntity<HttpStatus> eliminarServicio(@PathVariable Long idServicio){
         sServicio.deleteServicioById(idServicio);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

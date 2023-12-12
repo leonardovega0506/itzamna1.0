@@ -11,8 +11,8 @@ import java.util.Optional;
 
 @Repository
 public interface IProductoRepository extends JpaRepository<ProductosModel,Long> {
+    Page<ProductosModel> findByProveedor_IdProveedor(Long idProveedor, Pageable pageable);
     Optional<ProductosModel> findByClaveProductoAllIgnoreCase(String claveProducto);
     Page<ProductosModel> findByProveedor_NombreProveedor(String nombreProveedor, Pageable pageable);
     Optional<ProductosModel> findByClaveProducto(String claveProducto);
-    List<ProductosModel> findByProveedor_IdProveedor(Long idProveedor);
 }

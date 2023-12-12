@@ -17,7 +17,7 @@ public interface IComprasService {
     List<DetalleCompraDTO> getDetallesByCompra(Long idCompra);
     ComprasDTO getCompraById(Long idCompra);
     ComprasDTO getcompraByNotaCompra(String notaCompra);
-    ComprasDTO saveCompra(ComprasDTO comprasDTO);
+    ComprasDTO saveCompra(ComprasDTO comprasDTO,Long idProveedor);
     void updateCompra(ComprasDTO compras);
     void deleteCompraById(Long idCompra);
 }

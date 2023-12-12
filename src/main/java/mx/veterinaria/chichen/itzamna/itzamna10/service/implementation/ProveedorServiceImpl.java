@@ -105,9 +105,10 @@ public class ProveedorServiceImpl implements IProveedorService {
     }
 
     @Override
-    public void updateProveedor(ProveedorDTO proveedor) {
-        ProveedorModel proveedorBuscado = iProveedor.findById(proveedor.getIdProveedor()).orElseThrow(()->new ResourceNotFoundException("Proveedor","id", proveedor.getIdProveedor()));
-        iProveedor.save(proveedorBuscado);
+    public ProveedorDTO updateProveedor(ProveedorDTO proveedor) {
+        log.info("Se ha buscado al proveedor");
+        ProveedorDTO proveedorActualizado = mapearDTOEntidad(iProveedor.save(mapearEntidadDTO(proveedor)));
+        return proveedorActualizado;
     }
 
     @Override

@@ -30,12 +30,15 @@ public class ServiciosModel {
     @Column(name = "duracion")
     private String duracion;
 
-    @OneToMany
+    @Column(name = "descripcion_servicio")
+    private String descripcionServicio;
+
+    @OneToMany(mappedBy = "servicio")
     private List<ServiciosPacientesModel> serviciosPacientes;
 
-    @OneToMany
+    @OneToMany(mappedBy = "servicio")
     private List<ResponsivasModel> responsivas;
 
-    @OneToMany
+    @OneToMany(mappedBy = "servicio")
     private List<CitasModel> citas;
 }

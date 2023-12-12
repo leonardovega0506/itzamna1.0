@@ -6,7 +6,9 @@ import mx.veterinaria.chichen.itzamna.itzamna10.model.dto.DiarioDTO;
 import mx.veterinaria.chichen.itzamna.itzamna10.model.dto.PacientesDTO;
 import mx.veterinaria.chichen.itzamna.itzamna10.model.entity.DiarioModel;
 import mx.veterinaria.chichen.itzamna.itzamna10.model.entity.PacientesModel;
+import mx.veterinaria.chichen.itzamna.itzamna10.model.entity.PropietarioModel;
 import mx.veterinaria.chichen.itzamna.itzamna10.repository.IPacienteRepository;
+import mx.veterinaria.chichen.itzamna.itzamna10.repository.IPropietarioRepository;
 import mx.veterinaria.chichen.itzamna.itzamna10.response.DiarioResponse;
 import mx.veterinaria.chichen.itzamna.itzamna10.response.PacienteResponse;
 import mx.veterinaria.chichen.itzamna.itzamna10.response.ProductoResponse;
@@ -29,6 +31,9 @@ public class PacienteServiceImpl implements IPacienteService {
 
     @Autowired
     private IPacienteRepository iPaciente;
+
+    @Autowired
+    private IPropietarioRepository iPropietario;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -58,12 +63,12 @@ public class PacienteServiceImpl implements IPacienteService {
         pacienteResponse.setSizePage(pacientes.getSize());
         pacienteResponse.setAllPage(pacientes.getTotalPages());
         pacienteResponse.setAllElements(pacientes.getTotalElements());
-        log.info("SE REGRESA LA INFORMACION DEL RESPONSE: {}",pacienteResponse);
+        log.info("SE REGRESA LA INFORMACION DEL RESPONSE");
         return pacienteResponse;
     }
 
     @Override
-    public PacienteResponse getAllPacienteByPropietario(int numPage, int size, String orderBy, String sortDir, String nombreProp) {
+    public PacienteResponse getAllPacienteByPropietario(int numPage, int size, String orderBy, String sortDir, Long idPropietario) {
         //Generamos la paginacion
         Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name())?Sort.by(orderBy).ascending():Sort.by(orderBy).descending();
         Pageable pageable = PageRequest.of(numPage,size,sort);
@@ -72,10 +77,10 @@ public class PacienteServiceImpl implements IPacienteService {
         log.info("SE EMPEZARA A BUSCAR EL MEDIANTE LA ORGANZAZCION, {}", orderBy);
         log.info("SE EMPEZARA A BUSCAR EL MEDIANTE LA FORMA, {}", sortDir);
         //Buscamos y mapeamos a nuestro DTO
-        Page<PacientesModel> pacientes =iPaciente.findAll(pageable);
+        Page<PacientesModel> pacientes = iPaciente.findByPropietario_IdPropietario(idPropietario,pageable);
         List<PacientesModel> listaPacientes = pacientes.getContent();
         List<PacientesDTO> contenido = listaPacientes
-                .stream().filter(paciente -> paciente.getPropietario().getNombrePropietario().contains(nombreProp))
+                .stream()
                 .map(paciente -> mapearDTOEntidad(paciente))
                 .collect(Collectors.toList());
 
@@ -87,7 +92,7 @@ public class PacienteServiceImpl implements IPacienteService {
         pacienteResponse.setSizePage(pacientes.getSize());
         pacienteResponse.setAllPage(pacientes.getTotalPages());
         pacienteResponse.setAllElements(pacientes.getTotalElements());
-        log.info("SE REGRESA LA INFORMACION DEL RESPONSE: {}",pacienteResponse);
+        log.info("SE REGRESA LA INFORMACION DEL RESPONSE");
         return pacienteResponse;
     }
 
@@ -104,7 +109,7 @@ public class PacienteServiceImpl implements IPacienteService {
         Page<PacientesModel> pacientes =iPaciente.findAll(pageable);
         List<PacientesModel> listaPacientes = pacientes.getContent();
         List<PacientesDTO> contenido = listaPacientes
-                .stream().filter(paciente -> paciente.getNombre_paciente().contains(nombre))
+                .stream().filter(paciente -> paciente.getNombrePaciente().contains(nombre))
                 .map(paciente -> mapearDTOEntidad(paciente))
                 .collect(Collectors.toList());
 
@@ -116,7 +121,7 @@ public class PacienteServiceImpl implements IPacienteService {
         pacienteResponse.setSizePage(pacientes.getSize());
         pacienteResponse.setAllPage(pacientes.getTotalPages());
         pacienteResponse.setAllElements(pacientes.getTotalElements());
-        log.info("SE REGRESA LA INFORMACION DEL RESPONSE: {}",pacienteResponse);
+        log.info("SE REGRESA LA INFORMACION DEL RESPONSE");
         return pacienteResponse;
     }
 
@@ -128,15 +133,18 @@ public class PacienteServiceImpl implements IPacienteService {
     }
 
     @Override
-    public PacientesDTO savePaciente(PacientesDTO pacientesDTO) {
-        PacientesModel pacienteNuevo = iPaciente.save(mapearEntidadDTO(pacientesDTO));
+    public PacientesDTO savePaciente(PacientesDTO pacientesDTO, Long idPropietario) {
+        PropietarioModel propietarioBuscado = iPropietario.findById(idPropietario).orElseThrow(()->new ResourceNotFoundException("propietario","id",idPropietario));
+        PacientesModel pacienteNuevo = mapearEntidadDTO(pacientesDTO);
+        pacienteNuevo.setPropietario(propietarioBuscado);
+        iPaciente.save(pacienteNuevo);
         return mapearDTOEntidad(pacienteNuevo);
     }
 
     @Override
     public void updatePaciente(PacientesDTO paciente) {
         PacientesModel pacienteBuscado = iPaciente.findById(paciente.getIdPaciente()).orElseThrow(()-> new ResourceNotFoundException("Paciente","id",paciente.getIdPaciente()));
-        iPaciente.save(pacienteBuscado);
+        iPaciente.save(mapearEntidadDTO(paciente));
     }
 
     @Override

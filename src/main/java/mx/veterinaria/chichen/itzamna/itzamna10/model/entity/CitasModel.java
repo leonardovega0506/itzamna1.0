@@ -1,5 +1,6 @@
 package mx.veterinaria.chichen.itzamna.itzamna10.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import mx.veterinaria.chichen.itzamna.itzamna10.model.dto.ServiciosDTO;
 
@@ -8,7 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
-@Table(name = "cita")
+@Table(name = "tbl_cita")
 @Data
 public class CitasModel {
 
@@ -24,9 +25,13 @@ public class CitasModel {
     @Column(name = "hora_cita")
     private LocalTime horaCita;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "servicio")
+    @JsonIgnore
     private ServiciosModel servicio;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "paciente")
+    @JsonIgnore
     private PacientesModel paciente;
 }

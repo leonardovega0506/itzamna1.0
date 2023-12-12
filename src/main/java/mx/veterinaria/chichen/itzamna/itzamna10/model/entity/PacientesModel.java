@@ -20,7 +20,7 @@ public class PacientesModel {
     private String tipoMascotaPaciente;
 
     @Column(name = "nombre_paciente")
-    private String nombre_paciente;
+    private String nombrePaciente;
 
     @Column(name = "raza_paciente")
     private String razaPaciente;
@@ -32,17 +32,18 @@ public class PacientesModel {
     private String sexoPaciente;
 
     @Column(name = "edad_paciente")
-    private Double edadPaciente;
+    private String edadPaciente;
 
     @Column(name = "fecha_alta")
     private LocalDate fechaAltaPaciente;
 
     @ManyToOne
+    @JoinColumn(name = "propietario")
     private PropietarioModel propietario;
 
-    @OneToMany
+    @OneToMany(mappedBy = "paciente")
     private List<ResponsivasModel> responsivas;
 
-    @OneToMany
+    @OneToMany(mappedBy = "paciente")
     private List<CitasModel> citas;
 }

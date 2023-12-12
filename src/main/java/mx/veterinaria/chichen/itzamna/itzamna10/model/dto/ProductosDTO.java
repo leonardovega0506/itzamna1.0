@@ -11,9 +11,10 @@ public class ProductosDTO {
     private String claveProducto;
     private String tipoProducto;
     private String nombreProducto;
+    private String marcaProducto;
     private Double costoProducto;
     private Double precioClienteProducto;
     private Integer cantidadProducto;
-    private Double precioProducto;
+    private String descripcionProducto;
     private ProveedorDTO proveedor;
 }

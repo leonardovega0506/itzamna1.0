@@ -1,6 +1,7 @@
 package mx.veterinaria.chichen.itzamna.itzamna10.service.implementation;
 
 import lombok.extern.slf4j.Slf4j;
+import mx.veterinaria.chichen.itzamna.itzamna10.exception.ResourceNotFoundException;
 import mx.veterinaria.chichen.itzamna.itzamna10.model.dto.CitasDTO;
 import mx.veterinaria.chichen.itzamna.itzamna10.model.dto.ComprasDTO;
 import mx.veterinaria.chichen.itzamna.itzamna10.model.entity.CitasModel;
@@ -18,6 +19,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.MonthDay;
 import java.time.Year;
 import java.time.YearMonth;
 import java.util.List;
@@ -75,27 +77,36 @@ public class CitaServiceImpl implements ICitaService {
 
     @Override
     public List<CitasDTO> getCitasByDay(LocalDate day) {
-        return null;
+
+
+        List<CitasModel> listaCitas = iCita.findByFechaCita(day);
+        List<CitasDTO> listaDevuelta = listaCitas.stream().map(cita -> mapearDTOEntidad(cita)).collect(Collectors.toList());
+        return listaDevuelta;
     }
 
     @Override
     public CitasDTO getCitaById(Long idCita) {
-        return null;
+        CitasModel citaTraida = iCita.findById(idCita).orElseThrow(()->new ResourceNotFoundException("Cita","Id",idCita));
+        return mapearDTOEntidad(citaTraida);
     }
 
     @Override
     public CitasDTO saveCita(CitasDTO citasDTO) {
-        return null;
+        CitasModel citaNueva = iCita.save(mapearEntidad(citasDTO));
+        return mapearDTOEntidad(citaNueva);
     }
 
     @Override
     public void updateCita(CitasDTO citasDTO) {
+        CitasModel citaTraida = iCita.findById(citasDTO.getIdCita()).orElseThrow(()->new ResourceNotFoundException("Cita","Id",citasDTO.getIdCita()));
 
+        iCita.save(citaTraida);
     }
 
     @Override
     public void deleteCitaById(Long idCita) {
-
+        CitasModel citaTraida = iCita.findById(idCita).orElseThrow(()->new ResourceNotFoundException("Cita","Id",idCita));
+        iCita.delete(citaTraida);
     }
 
     private CitasDTO mapearDTOEntidad(CitasModel citasModel){

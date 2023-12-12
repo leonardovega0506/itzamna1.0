@@ -7,19 +7,13 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-@Table(name = "tbl_Servicio_paciente")
+@Table(name = "tbl_servicio_paciente")
 public class ServiciosPacientesModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_servicio_paciente")
     private Long idServicioPaciente;
-
-    @ManyToOne
-    private ServiciosModel servicio;
-
-    @ManyToOne
-    private PacientesModel paciente;
 
     @Column(name = "seguimiento_servicio")
     private String seguimientoServicio;
@@ -35,4 +29,13 @@ public class ServiciosPacientesModel {
 
     @Column(name = "fecha_posterior_Servicio")
     private LocalDate fechaPosteriorServicio;
+
+    @ManyToOne
+    @JoinColumn(name = "paciente")
+    private PacientesModel paciente;
+
+    @ManyToOne
+    @JoinColumn(name = "servicio")
+    private ServiciosModel servicio;
+
 }

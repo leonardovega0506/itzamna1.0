@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "historico")
+@Table(name = "tbl_historico")
 @Data
 public class HistoricoModel {
     @Id
@@ -22,11 +22,14 @@ public class HistoricoModel {
     private Double valorHistroico;
 
     @ManyToOne
+    @JoinColumn(name = "compra")
     private ComprasModel compraHistorico;
 
     @ManyToOne
+    @JoinColumn(name = "venta")
     private VentasModel ventaHistorica;
 
     @ManyToOne
+    @JoinColumn(name = "historico_suma")
     private SumaHistoricoModel sumaHistorico;
 }

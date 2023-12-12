@@ -13,13 +13,13 @@ public interface IPacienteService {
 
     PacienteResponse getAllPacientes(int numPage, int sizePage, String orderBy, String sortDir);
 
-    PacienteResponse getAllPacienteByPropietario(int numPage, int size, String orderBy, String sortDir,String nombreProp);
+    PacienteResponse getAllPacienteByPropietario(int numPage, int size, String orderBy, String sortDir,Long idPropietario);
 
     PacienteResponse getPacienteByNombre(int numPage, int numSize, String orderBy, String sortDir, String nombre);
 
     PacientesDTO getPacienteById(Long idPaciente);
 
-    PacientesDTO savePaciente(PacientesDTO pacientesDTO);
+    PacientesDTO savePaciente(PacientesDTO pacientesDTO, Long idPropietario);
 
     void updatePaciente(PacientesDTO paciente);
 

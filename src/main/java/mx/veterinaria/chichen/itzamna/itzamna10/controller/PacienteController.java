@@ -31,10 +31,10 @@ public class PacienteController {
             @RequestParam(value = "numPage",defaultValue = "0") int numPage,
             @RequestParam (value = "numSize",defaultValue = "10") int numSize,
             @RequestParam (value = "orderBy",defaultValue = "idPaciente") String orderBy,
-            @RequestParam (value = "orderBy",defaultValue = "asc") String sortDir,
-            @RequestParam (value = "nombreProp") String nombreProp)
+            @RequestParam (value = "sortDir",defaultValue = "asc") String sortDir,
+            @RequestParam Long idPropietario)
     {
-        return new ResponseEntity<>(sPaciente.getAllPacienteByPropietario(numPage,numSize,orderBy,sortDir,nombreProp),HttpStatus.OK);
+        return new ResponseEntity<>(sPaciente.getAllPacienteByPropietario(numPage,numSize,orderBy,sortDir,idPropietario),HttpStatus.OK);
     }
 
     @GetMapping("/nombre")
@@ -54,8 +54,8 @@ public class PacienteController {
     }
 
     @PostMapping
-    public ResponseEntity<PacientesDTO> guardarPaciente(@RequestBody PacientesDTO pacientesDTO){
-        return new ResponseEntity<>(sPaciente.savePaciente(pacientesDTO),HttpStatus.CREATED);
+    public ResponseEntity<PacientesDTO> guardarPaciente(@RequestBody PacientesDTO pacientesDTO,@RequestParam Long idPropietario){
+        return new ResponseEntity<>(sPaciente.savePaciente(pacientesDTO,idPropietario),HttpStatus.CREATED);
     }
 
     @PutMapping
@@ -64,7 +64,7 @@ public class PacienteController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{idPaciente}")
     public ResponseEntity<HttpStatus> eliminarPaciente(@PathVariable Long idPaciente){
         sPaciente.deletePacienteById(idPaciente);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

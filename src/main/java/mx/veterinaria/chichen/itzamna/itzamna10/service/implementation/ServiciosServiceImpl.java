@@ -84,7 +84,7 @@ public class ServiciosServiceImpl implements IServiciosService {
     @Override
     public void updateServicio(ServiciosDTO servicio) {
         ServiciosModel servicioBuscado = iServicios.findById(servicio.getIdServicio()).orElseThrow(()-> new ResourceNotFoundException("Servicio","Id",servicio.getIdServicio()));
-        iServicios.save(servicioBuscado);
+        iServicios.save(mapearEntidadDTO(servicio));
     }
 
     @Override

@@ -32,12 +32,12 @@ public class ProductoController {
     public ResponseEntity<ProductoResponse> obtenerProductosByProveedor(
             @RequestParam(value = "numPage",defaultValue = "0") int numPage,
             @RequestParam (value = "numSize",defaultValue = "10") int numSize,
-            @RequestParam (value = "orderBy",defaultValue = "idDiario") String orderBy,
-            @RequestParam (value = "orderBy",defaultValue = "asc") String sortDir,
-            @RequestParam (value="nombreProv") String nombreProv
+            @RequestParam (value = "orderBy",defaultValue = "idProducto") String orderBy,
+            @RequestParam (value = "sortDir",defaultValue = "asc") String sortDir,
+            @RequestParam (value="idProveedor") Long idProveedor
     )
     {
-        return new ResponseEntity<>(sProducto.getAllProductoByProveedor(numPage,numSize,orderBy,sortDir,nombreProv),HttpStatus.OK);
+        return new ResponseEntity<>(sProducto.getAllProductoByProveedor(numPage,numSize,orderBy,sortDir,idProveedor),HttpStatus.OK);
     }
 
     @GetMapping("/nombre")
@@ -63,8 +63,8 @@ public class ProductoController {
     }
 
     @PostMapping
-    public ResponseEntity<ProductosDTO> guardarProducto(@RequestBody ProductosDTO productosDTO){
-        return new ResponseEntity<>(sProducto.saveProducto(productosDTO),HttpStatus.CREATED);
+    public ResponseEntity<ProductosDTO> guardarProducto(@RequestBody ProductosDTO productosDTO,@RequestParam Long idProveedor){
+        return new ResponseEntity<>(sProducto.saveProducto(productosDTO,idProveedor),HttpStatus.CREATED);
     }
 
     @PutMapping
@@ -73,7 +73,7 @@ public class ProductoController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{idProducto}")
     public ResponseEntity<HttpStatus> eliminarProducto(@PathVariable Long idProducto){
         sProducto.deleteProdycById(idProducto);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

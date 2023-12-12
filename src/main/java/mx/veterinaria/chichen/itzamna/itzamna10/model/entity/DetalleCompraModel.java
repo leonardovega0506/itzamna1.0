@@ -1,5 +1,6 @@
 package mx.veterinaria.chichen.itzamna.itzamna10.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -25,11 +26,16 @@ public class DetalleCompraModel {
     private Double precioTotalDetalle;
 
     @ManyToOne
-    private ComprasModel compras;
+    @JoinColumn(name = "compra")
+    @JsonIgnore
+    private ComprasModel compra;
 
     @ManyToOne
+    @JoinColumn(name = "producto")
+    @JsonIgnore
     private ProductosModel productoDetalle;
 
     @ManyToOne
+    @JoinColumn(name = "proveedor")
     private ProveedorModel proveedorDetalle;
 }

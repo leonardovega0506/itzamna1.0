@@ -1,5 +1,6 @@
 package mx.veterinaria.chichen.itzamna.itzamna10.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -27,10 +28,13 @@ public class ProveedorModel {
     @Column(name = "email_proveedor")
     private String emailProveedor;
 
-    @OneToMany
+    @JsonIgnore
+    @OneToMany(mappedBy = "proveedor")
     private List<ComprasModel> compras;
 
-    @OneToMany
+
+    @OneToMany(mappedBy = "proveedor",cascade = CascadeType.ALL,orphanRemoval = true)
+    @JsonIgnore
     private List<ProductosModel> productos;
 
 }

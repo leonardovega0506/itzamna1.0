@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-@Table(name = "detalle_venta")
+@Table(name = "tbl_detalle_venta")
 public class DetalleVentaModel {
 
     @Id
@@ -18,12 +18,6 @@ public class DetalleVentaModel {
     @Column(name = "fecha_detalle")
     private LocalDate fechaDetalle;
 
-    @ManyToOne
-    private ProductosModel productoDetalle;
-
-    @ManyToOne
-    private ServiciosPacientesModel servicio;
-
     @Column(name = "cantidad_detalle")
     private Integer cantidadDetalle;
 
@@ -31,6 +25,15 @@ public class DetalleVentaModel {
     private Double precioTotalDetalle;
 
     @ManyToOne
+    @JoinColumn(name = "venta")
     private VentasModel ventas;
+
+    @ManyToOne
+    @JoinColumn(name = "producto")
+    private ProductosModel productoDetalle;
+
+    @ManyToOne
+    @JoinColumn(name = "servicio")
+    private ServiciosPacientesModel servicio;
 
 }

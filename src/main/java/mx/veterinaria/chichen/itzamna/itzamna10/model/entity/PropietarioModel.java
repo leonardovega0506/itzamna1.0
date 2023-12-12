@@ -36,9 +36,9 @@ public class PropietarioModel {
     @Column(name = "fecha_alta")
     private String fechaAltaPropietario;
 
-    @OneToMany
+    @OneToMany(mappedBy = "propietario")
     private List<PacientesModel> pacientes;
 
-    @OneToMany
+    @OneToMany(mappedBy = "propietario")
     private List<ResponsivasModel> responsivas;
 }

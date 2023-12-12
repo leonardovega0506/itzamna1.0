@@ -8,8 +8,10 @@ import mx.veterinaria.chichen.itzamna.itzamna10.model.dto.DiarioDTO;
 import mx.veterinaria.chichen.itzamna.itzamna10.model.entity.ComprasModel;
 import mx.veterinaria.chichen.itzamna.itzamna10.model.entity.DetalleCompraModel;
 import mx.veterinaria.chichen.itzamna.itzamna10.model.entity.DiarioModel;
+import mx.veterinaria.chichen.itzamna.itzamna10.model.entity.ProveedorModel;
 import mx.veterinaria.chichen.itzamna.itzamna10.repository.IComprasRepository;
 import mx.veterinaria.chichen.itzamna.itzamna10.repository.IDetalleComprasRepository;
+import mx.veterinaria.chichen.itzamna.itzamna10.repository.IProveedorRepository;
 import mx.veterinaria.chichen.itzamna.itzamna10.response.ComprasResponse;
 import mx.veterinaria.chichen.itzamna.itzamna10.service.interfaces.IComprasService;
 import mx.veterinaria.chichen.itzamna.itzamna10.service.interfaces.IDiarioService;
@@ -34,6 +36,9 @@ public class ComprasServiceImpl implements IComprasService {
 
     @Autowired
     private IDetalleComprasRepository iDetalle;
+
+    @Autowired
+    IProveedorRepository iProveedor;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -65,7 +70,7 @@ public class ComprasServiceImpl implements IComprasService {
         comprasResponse.setAllElements(compras.getTotalElements());
         comprasResponse.setAllPage(compras.getTotalPages());
         comprasResponse.setLast(compras.isLast());
-        log.info("SE REGRESA LA INFORMACION DEL RESPONSE: {}",comprasResponse);
+        log.info("SE REGRESA LA INFORMACION DEL RESPONSE");
         return comprasResponse;
     }
 
@@ -104,7 +109,7 @@ public class ComprasServiceImpl implements IComprasService {
     //Obtener los detalles de la compra
     @Override
     public List<DetalleCompraDTO> getDetallesByCompra(Long idCompra) {
-        List<DetalleCompraModel> listaDetalles = iDetalle.findByCompras_IdCompra(idCompra);
+        List<DetalleCompraModel> listaDetalles = iDetalle.findByCompra_IdCompra(idCompra);
         ComprasModel compraBuscada = iCompras.findById(idCompra).orElseThrow( ()-> new ResourceNotFoundException("Compras","id",idCompra));
         compraBuscada.setProductosCompra(listaDetalles);
         iCompras.save(compraBuscada);
@@ -131,17 +136,20 @@ public class ComprasServiceImpl implements IComprasService {
 
     //Guardar la compra
     @Override
-    public ComprasDTO saveCompra(ComprasDTO comprasDTO) {
-        ComprasModel compraNueva = iCompras.save(mapearEntidadDTO(comprasDTO));
+    public ComprasDTO saveCompra(ComprasDTO comprasDTO, Long idProveedor) {
+        ProveedorModel proveedorTraido = iProveedor.findById(idProveedor).orElseThrow(()->new ResourceNotFoundException("Proveedor","id",idProveedor));
+        //List<DetalleCompraModel> listaDetalles = (List<DetalleCompraModel>) comprasDTO.getProductosCompra().stream().map(detalleDTO -> mapearEntidadDTO(detalleDTO));
+        ComprasModel compraNueva = mapearEntidadDTO(comprasDTO);
+        compraNueva.setProveedor(proveedorTraido);
+        iCompras.save(compraNueva);
+        log.info("COMPRA NUEVA, {}", compraNueva);
 
-        //Asignamos una compra
-        DiarioModel diarioModel = new DiarioModel();
-        diarioModel.setCompras(compraNueva);
-        diarioModel.setFechaDiario(LocalDate.now());
-        diarioModel.setValorDiario(compraNueva.getTotalCompra());
+        for (var dt : comprasDTO.getProductosCompra()) {
+            DetalleCompraModel detalleNuevo = mapearEntidadDTO(dt);
+            detalleNuevo.setCompra(compraNueva);
+            iDetalle.save(detalleNuevo);
+        }
 
-        //Guardamos una compra en el diario
-        DiarioDTO diarioDTO = sDiario.saveDiario(mapearDTOEntidad(diarioModel));
         log.info("COMPRA GUARDADA");
         return mapearDTOEntidad(compraNueva);
     }

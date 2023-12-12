@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name = "totales_historicos")
+@Table(name = "tbl_total_historico")
 public class SumaHistoricoModel {
 
     @Id
@@ -22,7 +22,7 @@ public class SumaHistoricoModel {
     @Column(name = "total")
     private Double sumaTotal;
 
-    @OneToMany
+    @OneToMany(mappedBy = "sumaHistorico")
     List<HistoricoModel> listaHistorico;
 
 }

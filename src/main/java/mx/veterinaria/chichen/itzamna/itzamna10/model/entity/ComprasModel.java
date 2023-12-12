@@ -1,5 +1,6 @@
 package mx.veterinaria.chichen.itzamna.itzamna10.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -16,22 +17,30 @@ public class ComprasModel {
     @Column(name = "id_compra")
     private Long idCompra;
 
-    @OneToMany
-    @Column(name = "producto")
-    private List<DetalleCompraModel> productosCompra;
 
     @Column(name = "total_compra")
     private Double totalCompra;
 
+    @Column(name = "estatus_compra")
+    private String estatusCompra;
+
     @Column(name = "fecha_compra")
     private LocalDate fechaCompra;
 
+    @Column(name = "factura")
+    private String factura;
+
     @Column(name = "factura_compra")
-    private String facturaCompra;
+    private Boolean facturaCompra;
 
     @Column(name = "nota_compra")
     private String notaCompra;
 
+    @OneToMany(mappedBy = "compra",cascade = CascadeType.REMOVE)
+    private List<DetalleCompraModel> productosCompra;
+
     @ManyToOne
+    @JoinColumn(name = "proveedor")
+    @JsonIgnore
     private ProveedorModel proveedor;
 }

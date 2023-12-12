@@ -12,7 +12,7 @@ public interface IProductosService {
 
     ProductoResponse getAllProductos(int numPage, int sizePage, String orderBy, String sortDir);
 
-    ProductoResponse getAllProductoByProveedor(int numPage, int sizePage, String orderBy, String sortDir, String nombreProveedor);
+    ProductoResponse getAllProductoByProveedor(int numPage, int sizePage, String orderBy, String sortDir, Long idProveedor);
 
     ProductoResponse getProductoByNombre(int numPage, int sizePage, String orderBy, String sortDir, String nombreProducto);
 
@@ -21,7 +21,7 @@ public interface IProductosService {
     ProductosDTO getProductoByClaveProducto(String claveProducto);
 
 
-    ProductosDTO saveProducto(ProductosDTO producto);
+    ProductosDTO saveProducto(ProductosDTO producto, Long idProveedor);
 
     void updateProductos(ProductosDTO producto);
 

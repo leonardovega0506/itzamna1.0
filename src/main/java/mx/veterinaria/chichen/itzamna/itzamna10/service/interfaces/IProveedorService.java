@@ -14,7 +14,7 @@ public interface IProveedorService {
     ProveedorResponse getAllProveedorByNombre(int numPage, int sizePage, String orderBy, String sortDir,String nombre);
     ProveedorDTO getProveedorById(Long idProveedor);
     ProveedorDTO saveProveedor(ProveedorDTO proveedor);
-    void updateProveedor(ProveedorDTO proveedor);
+    ProveedorDTO updateProveedor(ProveedorDTO proveedor);
 
     void deleteProveedorById(long idProveedor);
 }

@@ -9,6 +9,7 @@ import java.util.List;
 
 @Repository
 public interface ICitaRepository extends JpaRepository<CitasModel,Long> {
+    List<CitasModel> findByFechaCita(LocalDate fechaCita);
     List<CitasModel> findByFechaCitaBetween(LocalDate fechaCitaStart, LocalDate fechaCitaEnd);
 
 }

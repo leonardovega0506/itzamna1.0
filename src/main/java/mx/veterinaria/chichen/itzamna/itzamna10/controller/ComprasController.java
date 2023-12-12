@@ -1,6 +1,7 @@
 package mx.veterinaria.chichen.itzamna.itzamna10.controller;
 
 
+import lombok.extern.slf4j.Slf4j;
 import mx.veterinaria.chichen.itzamna.itzamna10.model.dto.ComprasDTO;
 import mx.veterinaria.chichen.itzamna.itzamna10.model.dto.DetalleCompraDTO;
 import mx.veterinaria.chichen.itzamna.itzamna10.response.ComprasResponse;
@@ -10,8 +11,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
+@Slf4j
 @RestController
 @CrossOrigin("*")
 @RequestMapping("chichen/itzamna/compras")
@@ -62,8 +65,10 @@ public class ComprasController {
 
     //Controlador para guardar la compra
     @PostMapping
-    public ResponseEntity<ComprasDTO> guardarCompra(@RequestBody ComprasDTO comprasDTO){
-        return new ResponseEntity<>(sCompras.saveCompra(comprasDTO),HttpStatus.CREATED);
+    public ResponseEntity<ComprasDTO> guardarCompra(@RequestBody ComprasDTO comprasDTO, @RequestParam Long idProveedor){
+        comprasDTO.setEstatusCompra("Compra Realizada");
+        comprasDTO.setFechaCompra(LocalDate.now());
+        return new ResponseEntity<>(sCompras.saveCompra(comprasDTO,idProveedor),HttpStatus.CREATED);
     }
 
     //Controlador para actualizar la compra

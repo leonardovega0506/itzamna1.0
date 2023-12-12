@@ -8,8 +8,9 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "ventas")
+@Table(name = "tbl_ventas")
 public class VentasModel {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_venta")
@@ -22,9 +23,11 @@ public class VentasModel {
     private LocalDate fechaVenta;
 
     @ManyToOne
-    private ServiciosPacientesModel servicioP;
+    @JoinColumn(name = "servicio")
+    private ServiciosModel servicio;
 
     @ManyToOne
+    @JoinColumn(name = "producto")
     private ProductosModel producto;
 
 }

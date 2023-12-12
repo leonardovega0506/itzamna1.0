@@ -51,12 +51,11 @@ public class ProveedorController {
     }
 
     @PutMapping
-    public ResponseEntity<HttpStatus> actualizarProveedor(@RequestBody ProveedorDTO proveedorDTO){
-        sProveedor.updateProveedor(proveedorDTO);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    public ResponseEntity<ProveedorDTO> actualizarProveedor(@RequestBody ProveedorDTO proveedorDTO){
+        return new ResponseEntity<>(sProveedor.updateProveedor(proveedorDTO),HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{idProveedor}")
     public ResponseEntity<HttpStatus> eliminarProveedor(@PathVariable Long idProveedor){
         sProveedor.deleteProveedorById(idProveedor);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

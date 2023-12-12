@@ -14,6 +14,7 @@ public class ServiciosDTO {
     private String nombreServicio;
     private Double costoServicio;
     private String duracion;
+    private String descripcionServicio;
     private List<ServiciosDTO> serviciosPacientes;
     private List<ResponsivasDTO> responsivas;
 

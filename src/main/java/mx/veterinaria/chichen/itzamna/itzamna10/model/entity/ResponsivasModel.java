@@ -17,15 +17,19 @@ public class ResponsivasModel {
     @Column(name = "fecha_Responsiva")
     private LocalDate fechaResponsiva;
 
+    @Column(name = "conformidad")
+    private Boolean conformeResponsiva;
+
     @ManyToOne
+    @JoinColumn(name = "servicio")
     private ServiciosModel servicio;
 
     @ManyToOne
+    @JoinColumn(name = "paciente")
     private PacientesModel paciente;
 
     @ManyToOne
+    @JoinColumn(name = "propietario")
     private PropietarioModel propietario;
 
-    @Column(name = "conformidad")
-    private Boolean conformeResponsiva;
 }

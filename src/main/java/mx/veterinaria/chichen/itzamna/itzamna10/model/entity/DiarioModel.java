@@ -22,8 +22,10 @@ public class DiarioModel {
     private Double valorDiario;
 
     @ManyToOne
+    @JoinColumn(name = "compra")
     private ComprasModel compras;
 
     @ManyToOne
+    @JoinColumn(name = "venta")
     private VentasModel ventas;
 }
